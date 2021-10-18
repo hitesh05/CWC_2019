@@ -36,8 +36,7 @@ CREATE TABLE `Results` (
   `Team 1 Score` VARCHAR(50),
   `Team 2 Score` VARCHAR(50),
   `Winner` VARCHAR(25),
-  `Win margin` VARCHAR(50),
-  `Man of the match` VARCHAR(30)
+  `Win margin` VARCHAR(50)
 );
 
 CREATE TABLE `Gallery` (

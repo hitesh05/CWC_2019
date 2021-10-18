@@ -1,3 +1,4 @@
+SET FOREIGN_KEY_CHECKS = 0;
 INSERT INTO Fixtures VALUES (1,'England','South Africa','The Oval','May 30 2019','The Oval');
 INSERT INTO Fixtures VALUES (2,'Pakistan','West Indies','Nottingham','May 31 2019','Nottingham');
 INSERT INTO Fixtures VALUES (3,'Sri Lanka','New Zealand','Cardiff','June 1 2019','Cardiff');
