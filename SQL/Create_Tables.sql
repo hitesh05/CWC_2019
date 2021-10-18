@@ -8,10 +8,8 @@ CREATE TABLE `Fixtures` (
   `Team 1` VARCHAR(25) NOT NULL,
   `Team 2` VARCHAR(25) NOT NULL,
   `Venue` VARCHAR(50) NOT NULL,
-  `Umpires` VARCHAR(50) NOT NULL,
-  `Date & Time` DATE NOT NULL,
-  `Toss` VARCHAR(50), 
-  `Ground Name` VARCHAR(50)
+  `Date & Time` VARCHAR(50) NOT NULL,
+  `Ground Name` VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE `Points Table` (
