@@ -41,7 +41,7 @@ CREATE TABLE `Results` (
 
 CREATE TABLE `Gallery` (
    `Match ID` INT PRIMARY KEY,
-   `Photos` VARCHAR(30)
+   `Photos` VARCHAR(300)
 );
 
 CREATE TABLE `Ground_Matches` (
