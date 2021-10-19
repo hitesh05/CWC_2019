@@ -14,7 +14,7 @@ CREATE TABLE `Fixtures` (
 
 CREATE TABLE `Points Table` (
   `Team Name` VARCHAR(25) PRIMARY KEY,
-  `Position`  INT NOT NULL,
+  `Position`  INT UNIQUE NOT NULL,
   `Matches Played` INT NOT NULL,
   `Matches Won` INT NOT NULL,
   `Matches Lost` INT NOT NULL,
@@ -51,16 +51,16 @@ CREATE TABLE `Ground_Matches` (
 );
 
 CREATE TABLE `Squad_Members` (
-  `Squad ID` INT,
-  `Player ID` INT,
+  `Squad ID` INT NOT NULL,
+  `Player ID` INT UNIQUE NOT NULL,
   `Name` VARCHAR(30) NOT NULL,
   PRIMARY KEY(`Squad ID`, `Player ID`)
 );
 
 CREATE TABLE `Squad_Member_Role` (
-  `Squad ID` INT,
-  `Player ID` INT,
-  `Role` VARCHAR(25),
+  `Squad ID` INT NOT NULL,
+  `Player ID` INT NOT NULL,
+  `Role` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`Squad ID`, `Player ID`, `Role`)
 );
 
@@ -117,7 +117,7 @@ CREATE TABLE `Equal_Points` (
 );
 
 
---------------- FOREIGN KEYS ----------------------------------------------------------------------------------
+
 
 ALTER TABLE `Fixtures`
 ADD FOREIGN KEY (`Ground Name`) REFERENCES `Grounds` (`Ground Name`) ON DELETE CASCADE ON UPDATE CASCADE;
@@ -136,6 +136,12 @@ ADD FOREIGN KEY (`Ground Name`) REFERENCES `Grounds` (`Ground Name`) ON DELETE C
 
 ALTER TABLE `Squad_Members`
 ADD FOREIGN KEY (`Squad ID`) REFERENCES `Squads` (`Squad ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `Squad_Member_Role`
+ADD FOREIGN KEY (`Squad ID`) REFERENCES `Squad_Members` (`Squad ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `Squad_Member_Role`
+ADD FOREIGN KEY (`Player ID`) REFERENCES `Squad_Members` (`Player ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `Batting Statistics`
 ADD FOREIGN KEY (`Player ID`) REFERENCES `Statistics` (`Player ID`) ON DELETE CASCADE ON UPDATE CASCADE;
