@@ -1,6 +1,6 @@
 CREATE TABLE `Squads` (
   `Squad ID` INT PRIMARY KEY,
-  `Squad Name` VARCHAR(25) NOT NULL
+  `Squad Name` VARCHAR(25) UNIQUE NOT NULL
 );
 
 CREATE TABLE `Fixtures` (
