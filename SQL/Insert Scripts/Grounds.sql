@@ -1,4 +1,5 @@
 SET FOREIGN_KEY_CHECKS = 0;
+
 INSERT INTO Grounds VALUES ("Lord's",'England','London');
 INSERT INTO Grounds VALUES ('Old Trafford','England','Manchester');
 INSERT INTO Grounds VALUES ('Bristol County Ground','England','Bristol');

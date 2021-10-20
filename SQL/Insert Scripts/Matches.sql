@@ -1,4 +1,5 @@
 SET FOREIGN_KEY_CHECKS = 0;
+
 INSERT INTO Matches VALUES (1,'The Oval');
 INSERT INTO Matches VALUES (2,'Trent Bridge');
 INSERT INTO Matches VALUES (3,'Cardiff Wales Stadium');

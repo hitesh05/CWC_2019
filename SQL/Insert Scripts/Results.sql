@@ -1,3 +1,5 @@
+SET FOREIGN_KEY_CHECKS = 0;
+
 INSERT INTO Results (`Match ID`, `Team 1 Score`, `Team 2 Score`, `Winner`, `Win Margin`)
 VALUES (1,'311/8','207/10','England','104 runs');
 INSERT INTO Results (`Match ID`, `Team 1 Score`, `Team 2 Score`, `Winner`, `Win Margin`)

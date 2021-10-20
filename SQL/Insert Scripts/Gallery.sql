@@ -1,3 +1,5 @@
+SET FOREIGN_KEY_CHECKS = 0;
+
 INSERT INTO Gallery VALUES (38,'https://images.hindustantimes.com/rf/image_size_630x354/HT/p2/2019/07/01/Pictures/icc-cricket-world-cup-england-v-india_f89fa6b0-9bd4-11e9-8ce4-a310e1a81ef5.jpg');
 INSERT INTO Gallery VALUES (34,'https://img.jagranjosh.com/imported/images/E/Others/India-vs-West-Indies-wicket.webp');
 INSERT INTO Gallery VALUES (22,'https://images.hindustantimes.com/rf/image_size_630x354/HT/p2/2019/06/16/Pictures/icc-cricket-world-cup-india-v-pakistan_4b220bbc-9063-11e9-bf7d-e03ff1c1f16f.jpg');

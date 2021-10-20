@@ -1,3 +1,5 @@
+SET FOREIGN_KEY_CHECKS = 0;
+
 INSERT INTO `Points Table` VALUES ('India',1,9,7,1,0,1,0.809,15,1);
 INSERT INTO `Points Table` VALUES ('Australia',2,9,7,2,0,0,0.868,14,2);
 INSERT INTO `Points Table` VALUES ('England',3,9,6,3,0,0,1.152,12,3);

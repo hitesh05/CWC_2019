@@ -1,3 +1,5 @@
+SET FOREIGN_KEY_CHECKS = 0;
+
 ----- INSERTING THE TEAMS
 INSERT INTO Squads VALUES (1,'India');
 INSERT INTO Squads VALUES (2,'Australia');
