@@ -22,10 +22,16 @@ def showPointsTable():
     print(tabulate(table, headers="keys", tablefmt='psql'))
     
 def matchResults():
-    query = "SELECT * FROM Results ORDER BY `Match ID` ASC"
-    cur.execute(query)
-    table = cur.fetchall()
-    print("Results")
+    id = input("Enter Match ID for result(leave empty for all results): ")
+    if(len(id)):
+        query = """SELECT * FROM Results WHERE `Match ID` = %s;"""
+        cur.execute(query,(id))
+        table = cur.fetchall()
+    else: 
+        query = "SELECT * FROM Results ORDER BY `Match ID` ASC"
+        cur.execute(query)
+        table = cur.fetchall()
+    print("Result(s):")
     print()
     print(tabulate(table, headers="keys", tablefmt='psql'))
     
@@ -45,6 +51,34 @@ def viewSquads():
     print()
     print(tabulate(table, headers="keys", tablefmt='psql'))
     
+def getVenue():
+    while(True):
+        id = input("Enter Match ID: ")
+        if(len(id)):
+            query = """SELECT `Ground Name` FROM `Ground_Matches` WHERE `Match ID` = %s;"""
+            cur.execute(query,(id))
+            res = cur.fetchall()
+            break
+        else:
+            print("No Match ID entered!")
+    
+    if not res:
+        print("No such Match ID")
+        return
+    print(tabulate(res, headers="keys", tablefmt='psql'))
+    return  
+
+def deletePhotos():
+    while(True):
+        id = input("Enter Match ID: ")
+        if(len(id)):
+            query = """UPDATE Gallery SET Photos = NULL WHERE `Match ID` = %s;"""
+            cur.execute(query,(id))
+            print("Photos deleted!")
+            break
+        else:
+            print("No Match ID entered!")
+    
 def playerStats():
     return 
     
@@ -60,9 +94,9 @@ def dispatch(ch):
     elif ch == 5:
         viewSquads()
     elif ch == 6:
-        print("To do")
+        getVenue()
     elif ch == 7:
-        print("To do")
+        deletePhotos()
     elif ch == 8:
         print("To do")
 
@@ -84,15 +118,15 @@ while True:
         with con.cursor() as cur:
             while True:
                 tmp = sp.call('clear', shell=True)
-                print("Premier League CLI")
+                print("Cricket World Cup 2019")
                 print("----------Queries----------")
                 print("1. View Points Table")
-                print("2. View all the Results")
+                print("2. View Results")
                 print("3. Player Stats")
                 print("4. View all fixtures")
                 print("5. View all the squads")
-                print("6.")
-                print("7.")
+                print("6. Get Venue")
+                print("7.Delete Photos")
                 print("8.")
                 print("9. Logout")
                 ch = 100
