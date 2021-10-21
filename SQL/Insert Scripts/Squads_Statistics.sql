@@ -49,7 +49,6 @@ INSERT INTO Squads_Statistics VALUES (44,3);
 INSERT INTO Squads_Statistics VALUES (45,7);
 INSERT INTO Squads_Statistics VALUES (46,7);
 INSERT INTO Squads_Statistics VALUES (47,7);
-INSERT INTO Squads_Statistics VALUES (3,8);
 INSERT INTO Squads_Statistics VALUES (48,5);
 INSERT INTO Squads_Statistics VALUES (49,3);
 INSERT INTO Squads_Statistics VALUES (50,1);

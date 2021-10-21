@@ -36,7 +36,7 @@ INSERT INTO Squad_Members(`Player ID`,`Squad ID`,`Name`) VALUES (33,5,'Shaheen S
 INSERT INTO Squad_Members(`Player ID`,`Squad ID`,`Name`) VALUES (34,3,'CR Woakes');
 INSERT INTO Squad_Members(`Player ID`,`Squad ID`,`Name`) VALUES (35,4,'JDS Neesham');
 INSERT INTO Squad_Members(`Player ID`,`Squad ID`,`Name`) VALUES (36,1,'Mohammed Shami');
-INSERT INTO Squad_Members(`Player ID`,`Squad ID`,`Name`) VALUES (37,4.'MJ Henry');
+INSERT INTO Squad_Members(`Player ID`,`Squad ID`,`Name`) VALUES (37,4,'MJ Henry');
 INSERT INTO Squad_Members(`Player ID`,`Squad ID`,`Name`) VALUES (38,2,'PJ Cummins');
 INSERT INTO Squad_Members(`Player ID`,`Squad ID`,`Name`) VALUES (39,7,'CH Morris');
 INSERT INTO Squad_Members(`Player ID`,`Squad ID`,`Name`) VALUES (40,6,'SL Malinga');
