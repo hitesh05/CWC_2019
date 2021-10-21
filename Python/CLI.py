@@ -39,7 +39,7 @@ def showFixtures():
     query = "SELECT * FROM Fixtures ORDER BY `Match ID` ASC"
     cur.execute(query)
     table = cur.fetchall()
-    print("Results")
+    print("Fixtures")
     print()
     print(tabulate(table, headers="keys", tablefmt='psql'))
     
@@ -63,7 +63,7 @@ def getVenue():
             print("No Match ID entered!")
     
     if not res:
-        print("No such Match ID")
+        print("No such Match ID!")
         return
     print(tabulate(res, headers="keys", tablefmt='psql'))
     return  
@@ -79,16 +79,40 @@ def deletePhotos():
         else:
             print("No Match ID entered!")
     
-def playerStats():
-    return 
+def total_sixes():
+     query = "SELECT SUM(6s) FROM `Batting Statistics`"
+     cur.execute(query)
+     table = cur.fetchall()
+     print('Total sixes of the tournament')
+     print()
+     print(tabulate(table, headers="keys", tablefmt='psql'))
+
+def cba_squad():
+    while(True):
+        sn = input('Enter squad name:')
+        if(len(sn)):
+            query = "SELECT SUM(`Batting average`)/COUNT(*) FROM `Batting Statistics` WHERE `Squad ID` = (SELECT `Squad ID` FROM Squads WHERE `Squad Name` = %s) GROUP BY `Squad ID`;"
+            cur.execute(query,(sn))
+            res = cur.fetchall()
+            break
+        else:
+            print("No name entered!")
     
+    if not res:
+        print("No such squad!")
+        return
+    print(tabulate(res, headers="keys", tablefmt='psql'))
+
+def compare_cba():
+
+
 def dispatch(ch):
     if ch == 1:
         showPointsTable()
     elif ch == 2:
         matchResults()
     elif ch == 3:
-        playerStats()
+        total_sixes()
     elif ch == 4:
         showFixtures()
     elif ch == 5:
@@ -98,6 +122,8 @@ def dispatch(ch):
     elif ch == 7:
         deletePhotos()
     elif ch == 8:
+        cba_squad()
+    elif ch == 9:
         print("To do")
 
 while True:
@@ -122,7 +148,7 @@ while True:
                 print("----------Queries----------")
                 print("1. View Points Table")
                 print("2. View Results")
-                print("3. Player Stats")
+                print("3. Total sixes of the tournament")
                 print("4. View all fixtures")
                 print("5. View all the squads")
                 print("6. Get Venue")
