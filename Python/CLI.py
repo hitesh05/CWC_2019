@@ -22,18 +22,26 @@ def showPointsTable():
     print(tabulate(table, headers="keys", tablefmt='psql'))
     
 def matchResults():
-    id = input("Enter Match ID for result(leave empty for all results): ")
-    if(len(id)):
-        query = """SELECT * FROM Results WHERE `Match ID` = %s;"""
-        cur.execute(query,(id))
-        table = cur.fetchall()
-    else: 
-        query = "SELECT * FROM Results ORDER BY `Match ID` ASC"
-        cur.execute(query)
-        table = cur.fetchall()
-    print("Result(s):")
-    print()
-    print(tabulate(table, headers="keys", tablefmt='psql'))
+    try:
+        id = input("Enter Match ID for result(leave empty for all results): ")
+        id1 = int(id)
+        if(id1<1 or id1>48):
+            print("Invalid Match ID")
+            return
+        if(len(id)):
+            query = """SELECT * FROM Results WHERE `Match ID` = %s;"""
+            cur.execute(query,(id))
+            table = cur.fetchall()
+        else: 
+            query = "SELECT * FROM Results ORDER BY `Match ID` ASC"
+            cur.execute(query)
+            table = cur.fetchall()
+        print("Result(s):")
+        print()
+        print(tabulate(table, headers="keys", tablefmt='psql'))
+    except Exception as e:
+        print("Invalid input")
+        return
     
 def showFixtures():
     query = "SELECT * FROM Fixtures ORDER BY `Match ID` ASC"
@@ -52,32 +60,36 @@ def viewSquads():
     print(tabulate(table, headers="keys", tablefmt='psql'))
     
 def getVenue():
-    while(True):
+    try:
         id = input("Enter Match ID: ")
+        id1 = int(id)
+        if(id1<1 or id1>48 or len(id)==0):
+            print("Invalid Match ID")
+            return
         if(len(id)):
             query = """SELECT `Ground Name` FROM `Ground_Matches` WHERE `Match ID` = %s;"""
             cur.execute(query,(id))
             res = cur.fetchall()
-            break
-        else:
-            print("No Match ID entered!")
-    
-    if not res:
-        print("No such Match ID")
+        print(tabulate(res, headers="keys", tablefmt='psql'))
         return
-    print(tabulate(res, headers="keys", tablefmt='psql'))
-    return  
+    except Exception as e:
+        print("Invalid input")
+        return
 
 def deletePhotos():
-    while(True):
+    try:
         id = input("Enter Match ID: ")
+        id1 = int(id)
+        if(id1<1 or id1>48 or len(id)==0):
+            print("Invalid Match ID")
+            return
         if(len(id)):
             query = """UPDATE Gallery SET Photos = NULL WHERE `Match ID` = %s;"""
             cur.execute(query,(id))
             print("Photos deleted!")
-            break
-        else:
-            print("No Match ID entered!")
+    except Exception as e:
+        print("Invalid input")
+        return
     
 def playerStats():
     return 
