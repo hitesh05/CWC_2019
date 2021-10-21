@@ -136,7 +136,29 @@ def compare_cba():
     except Exception as e:
         print("Invalid input")
         return
-
+    
+def searchPlayer():
+    try:
+        name = input("Enter player name you want to search(leave empty for all players): ")
+        if(len(name)):
+            query = """SELECT `Squad_Members`.`Squad ID`, `Squads`.`Squad Name`, `Squad_Members`.`Name` FROM `Squad_Members` INNER JOIN `Squads` ON `Squad_Members`.`Squad ID` = `Squads`.`Squad ID` WHERE Name = %s;"""
+            cur.execute(query,(name))
+            res = cur.fetchall()
+            if not res:
+                print("No such player in the database")
+                return
+        else:
+            query = """SELECT `Squad_Members`.`Squad ID`, `Squads`.`Squad Name`, `Squad_Members`.`Name` FROM `Squad_Members` INNER JOIN `Squads` ON `Squad_Members`.`Squad ID` = `Squads`.`Squad ID`"""
+            cur.execute(query)
+            res = cur.fetchall()
+        print("Player(s):")
+        print()
+        print(tabulate(res, headers="keys", tablefmt='psql'))
+        return
+    except Exception as e:
+        print("Invalid input")
+        return
+        
 def dispatch(ch):
     if ch == 1:
         showPointsTable()
@@ -157,7 +179,7 @@ def dispatch(ch):
     elif ch == 9:
         compare_cba()
     elif ch == 10:
-        print("To do")
+        searchPlayer()
 
 while True:
     tmp = sp.call('clear', shell=True)
@@ -186,13 +208,15 @@ while True:
                 print("5. View all the squads")
                 print("6. Get Venue")
                 print("7. Delete Photos")
-                print("8.")
-                print("9. Logout")
+                print("8. cba squad")
+                print("9. compare cba")
+                print("10. search player")
+                print("11. Logout")
                 ch = 100
-                while ch > 9:
+                while ch > 11:
                     try:
                         ch = int(input("Enter choice > "))
-                        if ch > 9:
+                        if ch > 11:
                             continue
                         elif ch < 1:
                             ch = 100
@@ -200,7 +224,7 @@ while True:
                     except ValueError:
                         continue
                 tmp = sp.call('clear', shell=True)
-                if ch == 9:
+                if ch == 11:
                     exit(0)
                 else:
                     back = dispatch(ch)
