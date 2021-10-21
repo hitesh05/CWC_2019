@@ -101,7 +101,7 @@ def total_sixes():
 
 def cba_squad():
     while(True):
-        sn = input('Enter squad name:')
+        sn = input('Enter squad name: ')
         if(len(sn)):
             query = "SELECT SUM(`Batting average`)/COUNT(*) FROM `Batting Statistics` WHERE `Squad ID` = (SELECT `Squad ID` FROM Squads WHERE `Squad Name` = %s) GROUP BY `Squad ID`;"
             cur.execute(query,(sn))
@@ -115,8 +115,27 @@ def cba_squad():
         return
     print(tabulate(res, headers="keys", tablefmt='psql'))
 
-# def compare_cba():
-
+def compare_cba():
+    try:
+        print("Enter x value for top x teams: ", end = "")
+        x = input();
+        tid = int(x)
+        print("Enter y value for bottom y teams: ", end = "")
+        y = input();
+        bid = int(y)
+        if(tid<0 or tid > 8 or bid<0 or bid>8):
+            print("Invalid value of x")
+            return
+        tip = (y,x)
+        query = "SELECT (SUM(`Batting average`)/COUNT(*))/(SELECT SUM(`Batting average`)/COUNT(*) FROM `Batting Statistics` WHERE `Squad ID` IN (SELECT `Squad ID` FROM `Points Table` WHERE Position >=(9-%s))) FROM `Batting Statistics` WHERE `Squad ID` IN (SELECT `Squad ID` FROM `Points Table` WHERE Position <= %s)"
+        cur.execute(query,tip)
+        table = cur.fetchall()
+        print("The ratio of cumulative batting average of top x teams to bottom y teams")
+        print()
+        print(tabulate(table, headers="keys", tablefmt='psql'))
+    except Exception as e:
+        print("Invalid input")
+        return
 
 def dispatch(ch):
     if ch == 1:
@@ -136,6 +155,8 @@ def dispatch(ch):
     elif ch == 8:
         cba_squad()
     elif ch == 9:
+        compare_cba()
+    elif ch == 10:
         print("To do")
 
 while True:
