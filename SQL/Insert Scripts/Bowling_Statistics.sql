@@ -1,0 +1,27 @@
+SET FOREIGN_KEY_CHECKS = 0;
+
+INSERT INTO `Bowling Statistics` VALUES (25, 1, 92.2, 5, 27, 5.43, 5/26, 18.59, 20.5, 2, 2);
+INSERT INTO `Bowling Statistics` VALUES (26, 2, 83.4, 3, 21, 4.88, 4/37, 19.47, 23.9, 0, 4);
+INSERT INTO `Bowling Statistics` VALUES (27, 3, 100.5, 8, 20, 4.57, 3/27, 23.05, 30.2, 0, 3);
+INSERT INTO `Bowling Statistics` VALUES (28, 4, 72.1, 2, 20, 6.70, 5/59, 24.20, 21.6, 2, 8);
+INSERT INTO `Bowling Statistics` VALUES (29, 5, 84.0, 9, 18, 4.41, 4/55, 20.61, 28.0, 0, 1);
+INSERT INTO `Bowling Statistics` VALUES (30, 6, 89.4, 2, 18, 5.16, 3/18, 25.72, 29.8, 0, 3);
+INSERT INTO `Bowling Statistics` VALUES (31, 7, 73.0, 5, 17, 4.90, 5/30, 21.05, 25.7, 1, 5);
+INSERT INTO `Bowling Statistics` VALUES (32, 8, 99.0, 4, 17, 4.83, 4/30, 28.17, 34.9, 0, 4);
+INSERT INTO `Bowling Statistics` VALUES (33, 9, 47.1, 3, 16, 4.96, 6/35, 14.62, 17.6, 1, 5);
+INSERT INTO `Bowling Statistics` VALUES (34, 10, 85.0, 6, 16, 5.24, 3/20, 27.87, 31.8, 0, 3);
+INSERT INTO `Bowling Statistics` VALUES (35, 11, 54.3, 2, 15, 5.35, 5/31, 19.46, 21.8, 1, 4);
+INSERT INTO `Bowling Statistics` VALUES (36, 12, 35.1, 2, 14, 5.48, 5/69, 13.78, 15.0, 1, 1);
+INSERT INTO `Bowling Statistics` VALUES (37, 13, 80.2, 5, 14, 4.87, 4/47, 28.00, 34.4, 0, 4);
+INSERT INTO `Bowling Statistics` VALUES (38, 14, 86.1, 6, 14, 4.95, 3/33, 30.50, 36.9, 0, 2);
+INSERT INTO `Bowling Statistics` VALUES (39, 15, 63.4, 5, 13, 5.35, 3/13, 26.23, 29.3, 0, 7);
+INSERT INTO `Bowling Statistics` VALUES (40, 16, 61.4, 4, 13, 6.04, 4/43, 28.69, 28.4, 0, 6);
+INSERT INTO `Bowling Statistics` VALUES (41, 17, 58.0, 2, 13, 7.18, 3/72, 32.07, 26.7, 0, 8);
+INSERT INTO `Bowling Statistics` VALUES (42, 18, 67.0, 2, 12, 5.85, 4/56, 32.66, 33.5, 0, 9);
+INSERT INTO `Bowling Statistics` VALUES (43, 19, 74.0, 0, 12, 5.97, 4/51, 36.83, 37.0, 0, 1);
+INSERT INTO `Bowling Statistics` VALUES (44, 20, 56.0, 0, 11, 4.85, 3/42, 24.72, 30.5, 0, 3);
+INSERT INTO `Bowling Statistics` VALUES (45, 21, 61.5, 2, 11, 5.43, 2/18, 30.54, 33.7, 0, 7);
+INSERT INTO `Bowling Statistics` VALUES (46, 22, 76.0, 0, 11, 4.92, 4/29, 34.00, 41.4, 0, 7);
+INSERT INTO `Bowling Statistics` VALUES (47, 23, 78.0, 4, 11, 5.08, 3/56, 36.09, 42.5, 0, 7);
+INSERT INTO `Bowling Statistics` VALUES (48, 24, 66.4, 1, 11, 6.00, 3/46, 36.36, 36.3, 0, 5);
+INSERT INTO `Bowling Statistics` VALUES (49, 25, 92.0, 0, 11, 5.71, 3/54, 47.81, 50.1, 0, 3);

@@ -1,0 +1,26 @@
+SET FOREIGN_KEY_CHECKS = 0;
+
+INSERT INTO `Batting Statistics` VALUES (1, 1, 648, 140, 81, 5, 98.33, 67, 14, 1);
+INSERT INTO `Batting Statistics` VALUES (2, 2, 647, 166, 71.88, 3, 89.36, 66, 8, 2);
+INSERT INTO `Batting Statistics` VALUES (3, 3, 606, 124, 86.57, 2, 96.03, 60, 2, 8);
+INSERT INTO `Batting Statistics` VALUES (4, 4, 578, 148, 82.57, 2, 74.96, 50, 3, 4);
+INSERT INTO `Batting Statistics` VALUES (5, 5, 556, 107, 61.77, 2, 89.53, 48, 2, 3);
+INSERT INTO `Batting Statistics` VALUES (6, 6, 532, 111, 48.36, 2, 92.84, 67, 11, 3);
+INSERT INTO `Batting Statistics` VALUES (7, 7, 507, 153, 50.70, 2, 102.01, 50, 2, 2);
+INSERT INTO `Batting Statistics` VALUES (8, 8, 474, 101, 67.71, 1, 87.77, 38, 11, 5);
+INSERT INTO `Batting Statistics` VALUES (9, 9, 465, 89, 66.42, 0, 93.18, 51, 12, 3);
+INSERT INTO `Batting Statistics` VALUES (10, 10, 443, 153, 63.28, 1, 115.36, 38, 2, 3);
+INSERT INTO `Batting Statistics` VALUES (11, 11, 443, 82, 55.37, 0, 94.05, 36, 4, 1);
+INSERT INTO `Batting Statistics` VALUES (12, 12, 387, 100, 64.50, 1, 89.58, 33, 2, 7);
+INSERT INTO `Batting Statistics` VALUES (13, 13, 379, 85, 37.90, 0, 85.94, 46, 2, 2);
+INSERT INTO `Batting Statistics` VALUES (14, 14, 375, 85, 62.50, 0, 104.16, 26, 22, 2);
+INSERT INTO `Batting Statistics` VALUES (15, 15, 371, 148, 41.22, 1, 111.07, 30, 2, 3);
+INSERT INTO `Batting Statistics` VALUES (16, 16, 367, 102, 52.42, 1, 92.67, 33, 10, 8);
+INSERT INTO `Batting Statistics` VALUES (17, 17, 367, 118, 52.42, 1, 100.27, 31, 5, 9);
+INSERT INTO `Batting Statistics` VALUES (18, 18, 361, 111, 45.12, 1, 77.46, 29, 2, 1);
+INSERT INTO `Batting Statistics` VALUES (19, 19, 350, 82, 38.88, 0, 75.26, 30, 1, 4);
+INSERT INTO `Batting Statistics` VALUES (20, 20, 316, 89, 35.11, 0, 88.26, 31, 5, 2);
+INSERT INTO `Batting Statistics` VALUES (21, 21, 312, 103, 34.66, 1, 122.83, 22, 8, 3);
+INSERT INTO `Batting Statistics` VALUES (22, 22, 311, 95, 62.20, 0, 90.40, 14, 10, 7);
+INSERT INTO `Batting Statistics` VALUES (23, 23, 305, 100, 38.12, 1, 76.25, 31, 1, 5);
+INSERT INTO `Batting Statistics` VALUES (24, 24, 305, 68, 38.12, 0, 86.89, 34, 4, 7);
