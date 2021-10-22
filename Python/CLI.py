@@ -92,7 +92,11 @@ def deletePhotos():
         return
     
 def total_sixes():
+<<<<<<< HEAD
      query = """SELECT SUM(6s) FROM `Batting Statistics`"""
+=======
+     query = "SELECT SUM(6s) AS Total_Sixes FROM `Batting Statistics`"
+>>>>>>> 87c4f72b0d9b14c42c48e346aff691cfb12bb146
      cur.execute(query)
      table = cur.fetchall()
      print('Total sixes of the tournament')
@@ -103,7 +107,11 @@ def cba_squad():
     while(True):
         sn = input('Enter squad name: ')
         if(len(sn)):
+<<<<<<< HEAD
             query = """SELECT SUM(`Batting average`)/COUNT(*) FROM `Batting Statistics` WHERE `Squad ID` = (SELECT `Squad ID` FROM Squads WHERE `Squad Name` = %s) GROUP BY `Squad ID`"""
+=======
+            query = "SELECT SUM(`Batting average`)/COUNT(*) AS Batting_Average FROM `Batting Statistics` WHERE `Squad ID` = (SELECT `Squad ID` FROM Squads WHERE `Squad Name` = %s) GROUP BY `Squad ID`;"
+>>>>>>> 87c4f72b0d9b14c42c48e346aff691cfb12bb146
             cur.execute(query,(sn))
             res = cur.fetchall()
             break
@@ -127,7 +135,11 @@ def compare_cba():
             print("Invalid value of x")
             return
         tip = (y,x)
+<<<<<<< HEAD
         query = """SELECT ((SUM(`Batting average`)/COUNT(*))/(SELECT SUM(`Batting average`)/COUNT(*)) FROM `Batting Statistics` WHERE `Squad ID` IN (SELECT `Squad ID` FROM `Points Table` WHERE Position >=(9-%s))) FROM `Batting Statistics` WHERE `Squad ID` IN (SELECT `Squad ID` FROM `Points Table` WHERE Position <= %s)"""
+=======
+        query = "SELECT (SUM(`Batting average`)/COUNT(*))/(SELECT SUM(`Batting average`)/COUNT(*) FROM `Batting Statistics` WHERE `Squad ID` IN (SELECT `Squad ID` FROM `Points Table` WHERE Position >=(9-%s))) AS Ratio FROM `Batting Statistics` WHERE `Squad ID` IN (SELECT `Squad ID` FROM `Points Table` WHERE Position <= %s)"
+>>>>>>> 87c4f72b0d9b14c42c48e346aff691cfb12bb146
         cur.execute(query,tip)
         table = cur.fetchall()
         print("The ratio of cumulative batting average of top x teams to bottom y teams")
@@ -158,6 +170,22 @@ def searchPlayer():
     except Exception as e:
         print("Invalid input")
         return
+
+def most_runs():
+    query = "SELECT Name FROM `Squad_Members` WHERE `Player ID` = (SELECT `Player ID` FROM `Batting Statistics` ORDER BY `Runs scored` DESC LIMIT 1)"
+    cur.execute(query)
+    table = cur.fetchall()
+    print('Player with most runs')
+    print()
+    print(tabulate(table, headers="keys", tablefmt='psql'))
+
+def most_wickets():
+    query = "SELECT Name FROM `Squad_Members` WHERE `Player ID` = (SELECT `Player ID` FROM `Bowling Statistics` ORDER BY `Wickets` DESC LIMIT 1)"
+    cur.execute(query)
+    table = cur.fetchall()
+    print('Player with most wickets')
+    print()
+    print(tabulate(table, headers="keys", tablefmt='psql'))
         
 def dispatch(ch):
     if ch == 1:
@@ -180,6 +208,12 @@ def dispatch(ch):
         compare_cba()
     elif ch == 10:
         searchPlayer()
+    elif ch == 11:
+        most_runs()
+    elif ch == 12:
+        most_wickets()
+    elif ch == 13:
+        print("TO DO!")
 
 while True:
     tmp = sp.call('clear', shell=True)
@@ -211,7 +245,9 @@ while True:
                 print("8. cba squad")
                 print("9. compare cba")
                 print("10. search player")
-                print("11. Logout")
+                print("11. Player with most runs")
+                print("12. Player with most wickets")
+                print("100. Logout")
                 ch = 100
                 while ch > 11:
                     try:
