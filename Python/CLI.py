@@ -174,6 +174,88 @@ def most_wickets():
     print('Player with most wickets')
     print()
     print(tabulate(table, headers="keys", tablefmt='psql'))
+
+def insert_player():
+    try:
+        print("Enter the player's name: ", end = "")
+        name = input()
+        print("Enter his Squad ID (1-10): ", end = "")
+        sqid = (int)input()
+        print("Enter his role (1 or 2 or 3):")
+        print("1. Batsemen\n2. Bowler\n3. Wicket-Keeper)
+        role = (int) input()
+        if(sqid < 1 or sqid > 10 or role < 1 or role > 3):
+            print("Invalid input")
+            return
+        tid = (sqid,name)
+        query1 = "INSERT INTO Squad_Members(`Squad ID`,`Name`) VALUES (%s, %s);"
+        cur.execute(query1,tid)
+        if(role == 1):
+           query2a = "INSERT INTO Squad_Member_Role(`Player ID`,`Squad ID`,`Role`) VALUES ((SELECT `Player ID` FROM Squad_Members WHERE `Squad ID` = %s),%s,'Batsmen');"
+           cur.execute(query2a,(sqid,sqid))
+        elif(role == 2):
+            query2b = "INSERT INTO Squad_Member_Role(`Player ID`,`Squad ID`,`Role`) VALUES ((SELECT `Player ID` FROM Squad_Members WHERE `Squad ID` = %s),%s,'Bowler');"
+            cur.execute(query2b,(sqid,sqid))
+        elif(role == 3):
+            query2c = "INSERT INTO Squad_Member_Role(`Player ID`,`Squad ID`,`Role`) VALUES ((SELECT `Player ID` FROM Squad_Members WHERE `Squad ID` = %s),%s,'Wicket-Keeper');"
+            cur.execute(query2c,(sqid,sqid))
+    except Exception as e:
+        print("Invalid input")
+        return
+
+def update_statistics():
+    try:
+        print("Enter 1 or 2 to update batting or bowling statistics respectively: ", end = "")
+        ch = (int)input()
+        if ch < 1 or ch > 2:
+            print("Invalid input")
+            return
+        if ch == 1:
+            print("Enter the Player ID:", end = "")
+            pid = (int)input()
+            print("Enter what to update(1 or 2 or 3):")
+            print("1. Runs scored\n2. Highest Score\n3. 100s")
+            bch = (int) input()
+            if bch == 1:
+                print("Enter runs scored: ", end = "")
+                rs = (int)input()
+                query_b1 = "UPDATE `Batting Statistics` SET `Runs scored` = %s WHERE `Player ID` = %s;"
+                cur.execute(query_b1,(rs,pid))
+            elif bch == 2:
+                print("Enter highest score: ", end = "")
+                hs = (int)input()
+                query_b2 = "UPDATE `Batting Statistics` SET `Highest Score` = %s WHERE `Player ID` = %s;"
+                cur.execute(query_b2,(hs,pid))
+            elif bch == 3:
+                print("Enter number of 100s: ", end = "")
+                hrs = (int)input()
+                query_b3 = "UPDATE `Batting Statistics` SET `100s` = %s WHERE `Player ID` = %s;"
+                cur.execute(query_b3,(hrs,pid))
+        elif ch == 2:
+            print("Enter the Player ID:", end = "")
+            pid = (int)input()
+            print("Enter what to update(1 or 2 or 3):")
+            print("1. Maidens\n2. Wickets\n3. 5-wicket hauls")
+            bch = (int) input()
+            if bch == 1:
+                print("Enter number of maidens: ", end = "")
+                rs = (int)input()
+                query_b1 = "UPDATE `Bowling Statistics` SET `Maidens` = %s WHERE `Player ID` = %s;"
+                cur.execute(query_b1,(rs,pid))
+            elif bch == 2:
+                print("Enter number of wickets: ", end = "")
+                hs = (int)input()
+                query_b2 = "UPDATE `Bowling Statistics` SET `Wickets` = %s WHERE `Player ID` = %s;"
+                cur.execute(query_b2,(hs,pid))
+            elif bch == 3:
+                print("Enter number of 5-wicket hauls: ", end = "")
+                hrs = (int)input()
+                query_b3 = "UPDATE `Bowling Statistics` SET `5 wicket hauls` = %s WHERE `Player ID` = %s;"
+                cur.execute(query_b3,(hrs,pid))
+    except Exception as e:
+        print("Invalid input")
+        return
+       
         
 def dispatch(ch):
     if ch == 1:
@@ -201,7 +283,9 @@ def dispatch(ch):
     elif ch == 12:
         most_wickets()
     elif ch == 13:
-        print("TO DO!")
+        insert_player()
+    elif ch == 14:
+        update_statistics()
 
 while True:
     tmp = sp.call('clear', shell=True)
@@ -230,17 +314,19 @@ while True:
                 print("5. View all the squads")
                 print("6. Get Venue")
                 print("7. Delete Photos")
-                print("8. cba squad")
-                print("9. compare cba")
-                print("10. search player")
+                print("8. Cumulative batting average of a squad")
+                print("9. Compare Cumulative Batting average of top x teams on the Points Table with Cumulative Batting average of bottom y teams on the Points Table")
+                print("10. Search player")
                 print("11. Player with most runs")
                 print("12. Player with most wickets")
-                print("100. Logout")
+                print("13. Insert player details in a squad")
+                print("14. Update statistics)
+                print("15. Logout")
                 ch = 100
-                while ch > 11:
+                while ch > 15:
                     try:
                         ch = int(input("Enter choice > "))
-                        if ch > 11:
+                        if ch > 15:
                             continue
                         elif ch < 1:
                             ch = 100
@@ -248,7 +334,7 @@ while True:
                     except ValueError:
                         continue
                 tmp = sp.call('clear', shell=True)
-                if ch == 11:
+                if ch == 15:
                     exit(0)
                 else:
                     back = dispatch(ch)
