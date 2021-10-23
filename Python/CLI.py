@@ -306,7 +306,7 @@ while True:
     tmp = sp.call('clear', shell=True)
 
     try:
-        con = pymysql.connect(host=MYSQL_HOST, user=MYSQL_USERNAME,
+        con = pymysql.connect(host=MYSQL_HOST, port=30306, user=MYSQL_USERNAME,
                               password=MYSQL_PASSWORD, db=DB_NAME, cursorclass=pymysql.cursors.DictCursor)
         tmp = sp.call('clear', shell=True)
 
@@ -342,11 +342,13 @@ while True:
                     try:
                         ch = int(input("Enter choice > "))
                         if ch > 15:
+                            print("Enter a valid choice please!")
                             continue
                         elif ch < 1:
                             ch = 100
                             continue
                     except ValueError:
+                        print("Enter valid choice please!")
                         continue
                 tmp = sp.call('clear', shell=True)
                 if ch == 15:
