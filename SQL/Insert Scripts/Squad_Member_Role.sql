@@ -47,7 +47,7 @@ INSERT INTO Squad_Member_Role(`Player ID`,`Squad ID`,`Role`) VALUES (34,3,'Batsm
 INSERT INTO Squad_Member_Role(`Player ID`,`Squad ID`,`Role`) VALUES (35,4,'Bowler');
 INSERT INTO Squad_Member_Role(`Player ID`,`Squad ID`,`Role`) VALUES (35,4,'Batsman');
 INSERT INTO Squad_Member_Role(`Player ID`,`Squad ID`,`Role`) VALUES (36,1,'Bowler');
-INSERT INTO Squad_Member_Role(`Player ID`,`Squad ID`,`Role`) VALUES (37,4.'Bowler');
+INSERT INTO Squad_Member_Role(`Player ID`,`Squad ID`,`Role`) VALUES (37,4,'Bowler');
 INSERT INTO Squad_Member_Role(`Player ID`,`Squad ID`,`Role`) VALUES (38,2,'Bowler');
 INSERT INTO Squad_Member_Role(`Player ID`,`Squad ID`,`Role`) VALUES (39,7,'Bowler');
 INSERT INTO Squad_Member_Role(`Player ID`,`Squad ID`,`Role`) VALUES (39,7,'Batsman');

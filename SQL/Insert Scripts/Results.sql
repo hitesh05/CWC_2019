@@ -39,7 +39,7 @@ VALUES (18, NULL, NULL,NULL,NULL);
 INSERT INTO Results (`Match ID`, `Team 1 Score`, `Team 2 Score`, `Winner`, `Win Margin`)
 VALUES (19,'212/10','213/2','England','8 wickets');
 INSERT INTO Results (`Match ID`, `Team 1 Score`, `Team 2 Score`, `Winner`, `Win Margin`)
-VALUES (10,'334/7','247','Australia','87 runs');
+VALUES (20,'334/7','247','Australia','87 runs');
 INSERT INTO Results (`Match ID`, `Team 1 Score`, `Team 2 Score`, `Winner`, `Win Margin`)
 VALUES (21,'125/10','131/1','South Africa','9 wickets');
 INSERT INTO Results (`Match ID`, `Team 1 Score`, `Team 2 Score`, `Winner`, `Win Margin`)
