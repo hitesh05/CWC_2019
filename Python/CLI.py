@@ -180,10 +180,10 @@ def insert_player():
         print("Enter the player's name: ", end = "")
         name = input()
         print("Enter his Squad ID (1-10): ", end = "")
-        sqid = (int)input()
+        sqid = (int)(input())
         print("Enter his role (1 or 2 or 3):")
-        print("1. Batsemen\n2. Bowler\n3. Wicket-Keeper)
-        role = (int) input()
+        print("1. Batsemen\n2. Bowler\n3. Wicket-Keeper")
+        role = (int)(input())
         if(sqid < 1 or sqid > 10 or role < 1 or role > 3):
             print("Invalid input")
             return
@@ -206,50 +206,50 @@ def insert_player():
 def update_statistics():
     try:
         print("Enter 1 or 2 to update batting or bowling statistics respectively: ", end = "")
-        ch = (int)input()
+        ch = (int)(input())
         if ch < 1 or ch > 2:
             print("Invalid input")
             return
         if ch == 1:
             print("Enter the Player ID:", end = "")
-            pid = (int)input()
+            pid = (int)(input())
             print("Enter what to update(1 or 2 or 3):")
             print("1. Runs scored\n2. Highest Score\n3. 100s")
-            bch = (int) input()
+            bch = (int)(input())
             if bch == 1:
                 print("Enter runs scored: ", end = "")
-                rs = (int)input()
+                rs = (int)(input())
                 query_b1 = "UPDATE `Batting Statistics` SET `Runs scored` = %s WHERE `Player ID` = %s;"
                 cur.execute(query_b1,(rs,pid))
             elif bch == 2:
                 print("Enter highest score: ", end = "")
-                hs = (int)input()
+                hs = (int)(input())
                 query_b2 = "UPDATE `Batting Statistics` SET `Highest Score` = %s WHERE `Player ID` = %s;"
                 cur.execute(query_b2,(hs,pid))
             elif bch == 3:
                 print("Enter number of 100s: ", end = "")
-                hrs = (int)input()
+                hrs = (int)(input())
                 query_b3 = "UPDATE `Batting Statistics` SET `100s` = %s WHERE `Player ID` = %s;"
                 cur.execute(query_b3,(hrs,pid))
         elif ch == 2:
             print("Enter the Player ID:", end = "")
-            pid = (int)input()
+            pid = (int)(input())
             print("Enter what to update(1 or 2 or 3):")
             print("1. Maidens\n2. Wickets\n3. 5-wicket hauls")
-            bch = (int) input()
+            bch = (int)(input())
             if bch == 1:
                 print("Enter number of maidens: ", end = "")
-                rs = (int)input()
+                rs = (int)(input())
                 query_b1 = "UPDATE `Bowling Statistics` SET `Maidens` = %s WHERE `Player ID` = %s;"
                 cur.execute(query_b1,(rs,pid))
             elif bch == 2:
                 print("Enter number of wickets: ", end = "")
-                hs = (int)input()
+                hs = (int)(input())
                 query_b2 = "UPDATE `Bowling Statistics` SET `Wickets` = %s WHERE `Player ID` = %s;"
                 cur.execute(query_b2,(hs,pid))
             elif bch == 3:
                 print("Enter number of 5-wicket hauls: ", end = "")
-                hrs = (int)input()
+                hrs = (int)(input())
                 query_b3 = "UPDATE `Bowling Statistics` SET `5 wicket hauls` = %s WHERE `Player ID` = %s;"
                 cur.execute(query_b3,(hrs,pid))
     except Exception as e:
@@ -320,7 +320,7 @@ while True:
                 print("11. Player with most runs")
                 print("12. Player with most wickets")
                 print("13. Insert player details in a squad")
-                print("14. Update statistics)
+                print("14. Update statistics")
                 print("15. Logout")
                 ch = 100
                 while ch > 15:
