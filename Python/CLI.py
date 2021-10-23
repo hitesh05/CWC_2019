@@ -23,20 +23,20 @@ def showPointsTable():
     
 def matchResults():
     try:
-        id = input("Enter Match ID for result(leave empty for all results): ")
+        id = input("Enter Match ID for result(type 49 for all results): ")
         id1 = int(id)
-        if(id1<1 or id1>48):
+        if(id1<1 or id1>49):
             print("Invalid Match ID")
             return
-        if(len(id)):
+        if(id1 < 49):
             query = """SELECT * FROM Results WHERE `Match ID` = %s;"""
             cur.execute(query,(id))
             table = cur.fetchall()
-        else: 
+        elif id1 == 49: 
             query = "SELECT * FROM Results ORDER BY `Match ID` ASC"
             cur.execute(query)
             table = cur.fetchall()
-        print("Result(s):")
+        print("Result(s): (Note that an empty entry implies an abandoned match")
         print()
         print(tabulate(table, headers="keys", tablefmt='psql'))
     except Exception as e:
@@ -87,6 +87,7 @@ def deletePhotos():
             query = """UPDATE Gallery SET Photos = NULL WHERE `Match ID` = %s;"""
             cur.execute(query,(id))
             print("Photos deleted!")
+            con.commit()
     except Exception as e:
         print("Invalid input")
         return
@@ -123,11 +124,11 @@ def compare_cba():
         print("Enter y value for bottom y teams: ", end = "")
         y = input();
         bid = int(y)
-        if(tid<0 or tid > 8 or bid<0 or bid>8):
-            print("Invalid value of x")
+        if(tid<=0 or tid > 9 or bid<=0 or bid>9):
+            print("Invalid input(s)")
             return
         tip = (y,x)
-        query = "SELECT (SUM(`Batting average`)/COUNT(*))/(SELECT SUM(`Batting average`)/COUNT(*) FROM `Batting Statistics` WHERE `Squad ID` IN (SELECT `Squad ID` FROM `Points Table` WHERE Position >=(9-%s))) AS Ratio FROM `Batting Statistics` WHERE `Squad ID` IN (SELECT `Squad ID` FROM `Points Table` WHERE Position <= %s)"
+        query = "SELECT (SUM(`Batting average`)/COUNT(*))/(SELECT SUM(`Batting average`)/COUNT(*) FROM `Batting Statistics` WHERE `Squad ID` IN (SELECT `Squad ID` FROM `Points Table` WHERE Position >=(10-%s))) AS Ratio FROM `Batting Statistics` WHERE `Squad ID` IN (SELECT `Squad ID` FROM `Points Table` WHERE Position <= %s)"
         cur.execute(query,tip)
         table = cur.fetchall()
         print("The ratio of cumulative batting average of top x teams to bottom y teams")
@@ -182,23 +183,34 @@ def insert_player():
         print("Enter his Squad ID (1-10): ", end = "")
         sqid = (int)(input())
         print("Enter his role (1 or 2 or 3):")
-        print("1. Batsemen\n2. Bowler\n3. Wicket-Keeper")
-        role = (int)(input())
+        print("1. Batsmen\n2. Bowler\n3. Wicket-Keeper")
+        role = int(input())
         if(sqid < 1 or sqid > 10 or role < 1 or role > 3):
             print("Invalid input")
             return
         tid = (sqid,name)
-        query1 = "INSERT INTO Squad_Members(`Squad ID`,`Name`) VALUES (%s, %s);"
-        cur.execute(query1,tid)
+        que = "SELECT `Player ID` FROM `Squad_Members` ORDER BY `Player ID` DESC LIMIT 1"
+        cur.execute(que)
+        dictionary = cur.fetchone()
+        pid = dictionary['Player ID']
+        # print(pid)
+        pid = pid+1
+        # print(pid,type(pid))
+        
+        query1 = "INSERT INTO Squad_Members(`Player ID`, `Squad ID`,`Name`) VALUES (%s,%s,%s);"
+        cur.execute(query1,(pid,sqid,name))
+        con.commit()
         if(role == 1):
-           query2a = "INSERT INTO Squad_Member_Role(`Player ID`,`Squad ID`,`Role`) VALUES ((SELECT `Player ID` FROM Squad_Members WHERE `Squad ID` = %s),%s,'Batsmen');"
-           cur.execute(query2a,(sqid,sqid))
+           query2a = "INSERT INTO Squad_Member_Role(`Player ID`,`Squad ID`,`Role`) VALUES (%s,%s,'Batsmen');"
+           cur.execute(query2a,(pid,sqid))
         elif(role == 2):
-            query2b = "INSERT INTO Squad_Member_Role(`Player ID`,`Squad ID`,`Role`) VALUES ((SELECT `Player ID` FROM Squad_Members WHERE `Squad ID` = %s),%s,'Bowler');"
-            cur.execute(query2b,(sqid,sqid))
+            query2b = "INSERT INTO Squad_Member_Role(`Player ID`,`Squad ID`,`Role`) VALUES (%s,%s,'Bowler');"
+            cur.execute(query2b,(pid,sqid))
         elif(role == 3):
-            query2c = "INSERT INTO Squad_Member_Role(`Player ID`,`Squad ID`,`Role`) VALUES ((SELECT `Player ID` FROM Squad_Members WHERE `Squad ID` = %s),%s,'Wicket-Keeper');"
-            cur.execute(query2c,(sqid,sqid))
+            query2c = "INSERT INTO Squad_Member_Role(`Player ID`,`Squad ID`,`Role`) VALUES (%s,%s,'Wicket-Keeper');"
+            cur.execute(query2c,(pid,sqid))
+        con.commit()
+        print("Player inserted in the database!")
     except Exception as e:
         print("Invalid input")
         return
@@ -219,8 +231,8 @@ def update_statistics():
             if bch == 1:
                 print("Enter runs scored: ", end = "")
                 rs = (int)(input())
-                query_b1 = "UPDATE `Batting Statistics` SET `Runs scored` = %s WHERE `Player ID` = %s;"
-                cur.execute(query_b1,(rs,pid))
+                query_b1 = "UPDATE `Batting Statistics` SET `Runs scored` = %s WHERE `Player ID` = %s;" % (rs,pid)
+                cur.execute(query_b1)
             elif bch == 2:
                 print("Enter highest score: ", end = "")
                 hs = (int)(input())
@@ -252,6 +264,9 @@ def update_statistics():
                 hrs = (int)(input())
                 query_b3 = "UPDATE `Bowling Statistics` SET `5 wicket hauls` = %s WHERE `Player ID` = %s;"
                 cur.execute(query_b3,(hrs,pid))
+                
+        print("Statistics updated!")
+        con.commit()
     except Exception as e:
         print("Invalid input")
         return
@@ -347,5 +362,3 @@ while True:
         tmp = input("Enter any key to Retry or type 'quit' to exit: ")
         if tmp == "quit":
             break
-
-    
