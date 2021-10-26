@@ -27,7 +27,7 @@ Returns the venue where the match was held according to the Match ID provided in
 In case you want to delete the pictures of a particular game, this functionality may be used. Error message shown if the Match ID entered is incorrect.
 
 **8. Cumulative batting average of a squad:**
-Displays the cumulative batting average of all the bats of a squad in our database. Error message shown if the Squad entered is incorrect.
+Displays the cumulative batting average of all the batsmen of a squad in our database. Error message shown if the Squad entered is incorrect.
 
 **9. Compare Cumulative Batting average of top x teams on the Points Table with Cumulative Batting average of bottom y teams on the Points Table:**
 This function return the ration between the cumulative average of top x (say 2) teams to bottom y (say 3) teams. The ranking is done according to the position on which the team finished in the points table.
