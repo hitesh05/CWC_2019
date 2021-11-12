@@ -306,7 +306,7 @@ while True:
     tmp = sp.call('clear', shell=True)
 
     try:
-        con = pymysql.connect(host=MYSQL_HOST, port=30306, user=MYSQL_USERNAME,
+        con = pymysql.connect(host=MYSQL_HOST, port=3306, user=MYSQL_USERNAME,
                               password=MYSQL_PASSWORD, db=DB_NAME, cursorclass=pymysql.cursors.DictCursor)
         tmp = sp.call('clear', shell=True)
 
