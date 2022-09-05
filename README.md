@@ -6,6 +6,13 @@ Database of Cricket World Cup, 2019 held in England, with command line interface
 
 Contains all the details of the World Cup held in 2019, including fixtures, results, players, their statistics, venues the games were held at, etc. 
 
+To run:
+```
+cd python/
+python3 CLI.py
+```
+Set the parameters in .env file accordingly.
+
 ## Functionalities that our code can provide:
 
 **1.View Points Table:**
