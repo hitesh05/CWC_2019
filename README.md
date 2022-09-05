@@ -8,7 +8,7 @@ Contains all the details of the World Cup held in 2019, including fixtures, resu
 
 To run:
 ```
-cd python/
+cd Python/
 python3 CLI.py
 ```
 Set the parameters in .env file accordingly.
